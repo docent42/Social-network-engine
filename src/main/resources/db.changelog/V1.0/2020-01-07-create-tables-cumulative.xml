@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<include file="2020-01-07-create-table-block_history.xml" relativeToChangelogFile="true"/>
+	<include file="2020-01-07-create-table-friendship.xml" relativeToChangelogFile="true"/>
+	<include file="2020-01-07-create-table-friendship_status.xml" relativeToChangelogFile="true"/>
+	<include file="2020-01-07-create-table-message.xml" relativeToChangelogFile="true"/>
+	<include file="2020-01-07-create-table-person.xml" relativeToChangelogFile="true"/>
+	<include file="2020-01-07-create-table-post.xml" relativeToChangelogFile="true"/>
+	<include file="2020-01-07-create-table-post_comment.xml" relativeToChangelogFile="true"/>
+	<include file="2020-01-07-create-table-post_file.xml" relativeToChangelogFile="true"/>
+	<include file="2020-01-07-create-table-post_like.xml" relativeToChangelogFile="true"/>
+	<include file="2020-01-07-create-table-post2tag.xml" relativeToChangelogFile="true"/>
+	<include file="2020-01-07-create-tables-notification-notification_type.xml" relativeToChangelogFile="true"/>
+	<include file="2020-01-07-create-table-tag.xml" relativeToChangelogFile="true"/>
+	<include file="2020-01-07-create-table-user.xml" relativeToChangelogFile="true"/>
+	<include file="2020-01-29-create-table-comment_like.xml" relativeToChangelogFile="true"/>
+	<include file="2020-01-29-create-table-dialog.xml" relativeToChangelogFile="true"/>
+	<include file="2020-01-29-create-table-person2dialog.xml" relativeToChangelogFile="true"/>
+	<include file="2020-01-10-add-index-foreign-key.xml" relativeToChangelogFile="true"/>
+	
+</databaseChangeLog>

@@ -1,0 +1,7 @@
+package com.skillbox.sw.utils;
+
+public class JwtConstants {
+  public final static String EMAIL = "tarakan@mail.ru";
+  public final static String GOOD_TOKEN = "skillboxeyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXJha2FuQG1haWwucnUiLCJleHAiOjE4OTM0NTYwMDF9.pfKwDjDRMadSuPRPFVaHx35-xersY0GL2UdPmZEjNSpkuX_9EOWGQ5C3e7aP6dBg5bixKCxeLobvX2iXgoCFhg";
+  public final static String BAD_TOKEN = "1skillboxeyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXJha2FuQG1haWwucnUiLCJleHAiOjE4OTM0NTYwMDF9.D2b_r7jpqAw7CrQOJDkFneVvLLx9l5WrFk1j9v_OIc0uqUJL_ZkuukcToJ19EznuZIcCmjZpSF4pXin0Co4WtAeyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXJha2FuQG1haWwucnUiLCJleHAiOjE4OTM0NTYwMDF9.D2b_r7jpqAw7CrQOJDkFneVvLLx9l5WrFk1j9v_OIc0uqUJL_ZkuukcToJ19EznuZIcCmjZpSF4pXin0Co4WtA";
+}

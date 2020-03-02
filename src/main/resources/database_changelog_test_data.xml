@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <include file="db.changelog/V1.0/2020-01-07-create-tables-cumulative.xml"
+    relativeToChangelogFile="true"/>
+  <include file="db.changelog/V2.0/2020-02-08-update-table-person.xml"
+    relativeToChangelogFile="true"/>
+  <include file="db.changelog/V2.0/2020-02-12-update-table-message.xml"
+    relativeToChangelogFile="true"/>
+  <include file="db.changelog/V2.0/2020-02-10-add-message-trigger-h2.xml"
+           relativeToChangelogFile="true"/>
+  <include file="db.changelog/V2.0/2020-02-16-update-table-dialog.xml"
+           relativeToChangelogFile="true"/>
+  <include file="db.changelog/V2.0/2020-02-20-add-field-enable.xml"
+           relativeToChangelogFile="true"/>
+  <include file="db.changelog/testdata/2020-02-04-insert-test-data.xml"
+    relativeToChangelogFile="true"/>
+
+
+</databaseChangeLog>

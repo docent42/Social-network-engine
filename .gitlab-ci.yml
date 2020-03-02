@@ -1,0 +1,32 @@
+image: maven:3.6.3-jdk-8
+
+stages:
+  - build
+  - test
+
+variables:
+  SKIP_LIQUIBASE: '-Dliquibase.should.run=false'
+  SPRING_ACTIVE_PROFILE: 'test_data'
+  MAVEN_OPTS: '-Dmaven.repo.local=.m2/repository $SKIP_LIQUIBASE'
+  MAVEN_OPTS_TEST: '-Dmaven.repo.local=.m2/repository -Dspring.profiles.active=$SPRING_ACTIVE_PROFILE'
+
+cache:
+  paths:
+    - .m2/repository/
+    - target/
+
+build:
+  stage: build
+  script: 
+    - echo 'Building proj'
+    - mvn $MAVEN_OPTS compile
+  except:
+    - master
+
+test:
+  stage: test
+  script:
+    - echo 'Running tests'
+    - mvn $MAVEN_OPTS_TEST test
+  except:
+    - master

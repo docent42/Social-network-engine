@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+  <changeSet author="sol" id="addColumn-isDeleted-person-table">
+    <addColumn tableName="person">
+      <column name="is_deleted" type="BIT(1)" defaultValue="0">
+        <constraints nullable="false"/>
+      </column>
+    </addColumn>
+  </changeSet>
+  <changeSet author="esv" id="dropForeignKeyConstraint-fk_message_recipient_id">
+    <dropForeignKeyConstraint baseTableName="message"
+                              constraintName="fk_message_dst_recipient_id"/>
+  </changeSet>
+  <changeSet author="esv" id="dropIndex-recipient_id">
+    <dropIndex indexName="fk_message_recipient_id"
+               tableName="message"/>
+  </changeSet>
+  <changeSet author="esv" id="dropColumn-recipient_id">
+    <dropColumn  tableName="message">
+      <column name="recipient_id" type="INT"/>
+    </dropColumn>
+  </changeSet>
+</databaseChangeLog>

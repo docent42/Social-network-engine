@@ -1,0 +1,92 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS
+
+---
+
+spring:
+  profiles: default
+
+  logging:
+    level:
+      ROOT: INFO
+      org.springframework: DEBUG
+      com.skillbox.sw: INFO
+
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: false
+    hibernate:
+      ddl-auto: validate
+
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    #потом пропишем адрес prod базы, а в тестовом переопределим на localhost
+    url: jdbc:mysql://localhost:3306/sn?serverTimezone=UTC
+    username: sn_user
+    password: sn_user
+    hikari:
+      connectionTimeout: 30000
+      idleTimeout: 600000
+      maxLifetime: 7190000
+      minimumIdle: 2
+      maximumPoolSize: 50
+
+  liquibase:
+    enabled: false
+    change-log: classpath:database_changelog.xml
+    url: jdbc:mysql://localhost:3306/sn?serverTimezone=UTC
+    user: sn_user
+    password: sn_user
+
+  #на будущее для конфигов
+  security:
+
+---
+spring:
+  profiles: test_data
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.H2Dialect
+
+  h2:
+    console:
+      enabled: true
+
+  #jdbc:h2:mem:sn;\MODE=MySQL;\DB_CLOSE_ON_EXIT=FALSE
+  datasource:
+    url: jdbc:h2:mem:test;MODE=MySQL;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+
+  liquibase:
+    user: sa
+    password:
+    url: jdbc:h2:mem:test;MODE=MySQL;DB_CLOSE_ON_EXIT=FALSE;IGNORECASE=TRUE
+    enabled: true
+    #путь к тестовому change_log
+    change-log: classpath:database_changelog_test_data.xml
+    parameters:
+      text_array_type: ARRAY
+
+  #чтобы каждый раз в тестах не авторизовываться, или при тесте авторизации System.setproperty("auth", "on")
+  security:
+    ignored:
+      /**
+
+  jackson:
+    date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true
+    default-property-inclusion: non_null

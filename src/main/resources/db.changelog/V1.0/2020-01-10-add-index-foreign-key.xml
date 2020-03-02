@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+					xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+					xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+					xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+	
+	<changeSet author="esv" id="block_history-createIndexes">
+        <createIndex indexName="fk_block_history_comment_id" tableName="block_history">
+            <column name="comment_id"/>
+        </createIndex>
+		<createIndex indexName="fk_block_history_person_id" tableName="block_history">
+            <column name="person_id"/>
+        </createIndex>
+		<createIndex indexName="fk_block_history_post_id" tableName="block_history">
+            <column name="post_id"/>
+        </createIndex>
+		<comment>block_history table</comment>
+    </changeSet>
+	
+    <changeSet author="esv" id="block_history-fk-1">
+        <addForeignKeyConstraint baseColumnNames="comment_id" 
+								baseTableName="block_history" 
+								constraintName="fk_block_history_comment_id" 
+								onDelete="CASCADE" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="post_comment"/>
+	</changeSet>							
+	<changeSet author="esv" id="block_history-fk-2">
+        <addForeignKeyConstraint baseColumnNames="person_id" 
+								baseTableName="block_history" 
+								constraintName="fk_block_history_person_id" 
+								onDelete="CASCADE" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="person"/>
+	</changeSet>							
+	<changeSet author="esv" id="block_history-fk-3">
+        <addForeignKeyConstraint baseColumnNames="post_id" 
+								baseTableName="block_history" 
+								constraintName="fk_block_history_post_id" 
+								onDelete="CASCADE" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="post"/>								
+    </changeSet>
+	
+	<changeSet author="esv" id="friendship-createIndexes">
+        <createIndex indexName="fk_friendship_src_person_id" tableName="friendship">
+            <column name="src_person_id"/>
+        </createIndex>
+		<createIndex indexName="fk_friendship_dst_person_id" tableName="friendship">
+            <column name="dst_person_id"/>
+        </createIndex>
+		<createIndex indexName="fk_friendship_status_id" tableName="friendship">
+			<column name="status_id"/>
+		</createIndex>
+		<comment>friendship table</comment>
+    </changeSet>
+	
+	<changeSet author="esv" id="friendship-fk-1">
+        <addForeignKeyConstraint baseColumnNames="src_person_id" 
+								baseTableName="friendship" 
+								constraintName="fk_friendship_src_person_id" 
+								onDelete="CASCADE" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="person"/>
+	</changeSet>							
+	<changeSet author="esv" id="friendship-fk-2">
+        <addForeignKeyConstraint baseColumnNames="dst_person_id" 
+								baseTableName="friendship" 
+								constraintName="fk_friendship_dst_person_id" 
+								onDelete="CASCADE" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="person"/>								
+    </changeSet>
+	<changeSet author="esv" id="friendship-fk-3">
+		<addForeignKeyConstraint baseColumnNames="status_id"
+								 baseTableName="friendship"
+								 constraintName="fk_friendship_status_id"
+								 onDelete="NO ACTION"
+								 onUpdate="NO ACTION"
+								 referencedColumnNames="id"
+								 referencedTableName="friendship_status"/>
+	</changeSet>
+
+	
+	<changeSet author="esv" id="message-createIndexes">
+        <createIndex indexName="fk_message_author_id" tableName="message">
+            <column name="author_id"/>
+        </createIndex>
+		<createIndex indexName="fk_message_recipient_id" tableName="message">
+            <column name="recipient_id"/>
+        </createIndex>
+		<createIndex indexName="fk_message_dialog_id" tableName="message">
+            <column name="dialog_id"/>
+        </createIndex>
+		<comment>message table</comment>
+    </changeSet>
+	
+	<changeSet author="esv" id="message-fk-1">
+        <addForeignKeyConstraint baseColumnNames="author_id" 
+								baseTableName="message" 
+								constraintName="fk_message_author_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="person"/>
+	</changeSet>							
+	<changeSet author="esv" id="message-fk-2">
+        <addForeignKeyConstraint baseColumnNames="recipient_id" 
+								baseTableName="message" 
+								constraintName="fk_message_dst_recipient_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="person"/>								
+    </changeSet>
+	<changeSet author="esv" id="message-fk-3">
+        <addForeignKeyConstraint baseColumnNames="dialog_id" 
+								baseTableName="message" 
+								constraintName="fk_message_dialog_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="dialog"/>								
+    </changeSet>
+	
+	<changeSet author="esv" id="post-createIndexes">
+        <createIndex indexName="fk_post_author_id" tableName="post">
+            <column name="author_id"/>
+        </createIndex>
+		<comment>post table</comment>
+    </changeSet>
+	
+	<changeSet author="esv" id="post-fk-1">
+        <addForeignKeyConstraint baseColumnNames="author_id" 
+								baseTableName="post" 
+								constraintName="fk_post_author_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="person"/>
+	</changeSet>
+	
+	<changeSet author="esv" id="post2tag-createIndexes">
+        <createIndex indexName="fk_post2tag_post_id" tableName="post2tag">
+            <column name="post_id"/>
+        </createIndex>
+		<createIndex indexName="fk_post2tag_tag_id" tableName="post2tag">
+            <column name="tag_id"/>
+        </createIndex>
+		<comment>post2tag table</comment>
+    </changeSet>
+	
+	<changeSet author="esv" id="post2tag-fk-1">
+        <addForeignKeyConstraint baseColumnNames="post_id" 
+								baseTableName="post2tag" 
+								constraintName="fk_post2tag_post_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="post"/>
+	</changeSet>							
+	<changeSet author="esv" id="post2tag-fk-2">
+        <addForeignKeyConstraint baseColumnNames="tag_id" 
+								baseTableName="post2tag" 
+								constraintName="fk_post2tag_dst_tag_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="tag"/>								
+    </changeSet>
+	
+	<changeSet author="esv" id="post_comment-createIndexes">
+        <createIndex indexName="fk_post_comment_post_id" tableName="post_comment">
+            <column name="post_id"/>
+        </createIndex>
+		<createIndex indexName="fk_post_comment_parent_id" tableName="post_comment">
+            <column name="parent_id"/>
+        </createIndex>
+		<createIndex indexName="fk_post_comment_author_id" tableName="post_comment">
+            <column name="author_id"/>
+        </createIndex>
+		<comment>post_comment table</comment>
+    </changeSet>
+	
+    <changeSet author="esv" id="post_comment-fk-1">
+        <addForeignKeyConstraint baseColumnNames="post_id" 
+								baseTableName="post_comment" 
+								constraintName="fk_post_comment_post_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="post"/>
+	</changeSet>							
+	<changeSet author="esv" id="post_comment-fk-2">
+        <addForeignKeyConstraint baseColumnNames="parent_id" 
+								baseTableName="post_comment" 
+								constraintName="fk_post_comment_parent_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="post_comment"/>
+	</changeSet>							
+	<changeSet author="esv" id="post_comment-fk-3">
+        <addForeignKeyConstraint baseColumnNames="author_id" 
+								baseTableName="post_comment" 
+								constraintName="fk_post_comment_author_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="person"/>								
+    </changeSet>
+	
+	<changeSet author="esv" id="post_file-createIndexes">
+        <createIndex indexName="fk_post_file_post_id" tableName="post_file">
+            <column name="post_id"/>
+        </createIndex>
+		<comment>post_file table</comment>
+    </changeSet>
+	
+	<changeSet author="esv" id="post_file-fk-1">
+        <addForeignKeyConstraint baseColumnNames="post_id" 
+								baseTableName="post_file" 
+								constraintName="fk_post_file_post_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="post"/>
+	</changeSet>
+	
+	<changeSet author="esv" id="post_like-createIndexes">
+        <createIndex indexName="fk_post_like_post_id" tableName="post_like">
+            <column name="post_id"/>
+        </createIndex>
+		<createIndex indexName="fk_post_like_person_id" tableName="post_like">
+            <column name="person_id"/>
+        </createIndex>
+		<comment>post_like table</comment>
+    </changeSet>
+	
+	<changeSet author="esv" id="post_like-fk-1">
+        <addForeignKeyConstraint baseColumnNames="post_id" 
+								baseTableName="post_like" 
+								constraintName="fk_post_like_post_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="post"/>
+	</changeSet>							
+	<changeSet author="esv" id="post_like-fk-2">
+        <addForeignKeyConstraint baseColumnNames="person_id" 
+								baseTableName="post_like" 
+								constraintName="fk_post_like_person_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="person"/>								
+    </changeSet>
+	
+	<changeSet author="esv" id="comment_like-createIndexes">
+        <createIndex indexName="fk_comment_like_comment_id" tableName="comment_like">
+            <column name="comment_id"/>
+        </createIndex>
+		<createIndex indexName="fk_comment_like_person_id" tableName="comment_like">
+            <column name="person_id"/>
+        </createIndex>
+		<comment>comment_like table</comment>
+    </changeSet>
+	
+	<changeSet author="esv" id="comment_like-fk-1">
+        <addForeignKeyConstraint baseColumnNames="comment_id" 
+								baseTableName="comment_like" 
+								constraintName="fk_comment_like_comment_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="post_comment"/>
+	</changeSet>							
+	<changeSet author="esv" id="comment_like-fk-2">
+        <addForeignKeyConstraint baseColumnNames="person_id" 
+								baseTableName="comment_like" 
+								constraintName="fk_comment_like_person_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="person"/>								
+    </changeSet>
+	
+	<changeSet author="esv" id="notification-createIndexes">
+        <createIndex indexName="fk_notification_type_id" tableName="notification">
+            <column name="type_id"/>
+        </createIndex>
+		<createIndex indexName="fk_notification_person_id" tableName="notification">
+            <column name="person_id"/>
+        </createIndex>
+<!--		<createIndex indexName="fk_notification_entity_id" tableName="notification">-->
+<!--            <column name="entity_id"/>-->
+<!--        </createIndex>-->
+		<comment>notification table</comment>
+    </changeSet>
+	
+	<changeSet author="esv" id="notification-fk-1">
+        <addForeignKeyConstraint baseColumnNames="type_id" 
+								baseTableName="notification" 
+								constraintName="fk_notification_type_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="notification_type"/>
+	</changeSet>							
+	<changeSet author="esv" id="notification-fk-2">
+        <addForeignKeyConstraint baseColumnNames="person_id" 
+								baseTableName="notification" 
+								constraintName="fk_notification_person_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="person"/>
+	</changeSet>							
+<!--	<changeSet author="esv" id="notification-fk-3">-->
+<!--        <addForeignKeyConstraint baseColumnNames="entity_id" -->
+<!--								baseTableName="notification" -->
+<!--								constraintName="fk_notification_entity_post" -->
+<!--								onDelete="NO ACTION" -->
+<!--								onUpdate="NO ACTION" -->
+<!--								referencedColumnNames="id" -->
+<!--								referencedTableName="post"/>								-->
+<!--    </changeSet>-->
+	<changeSet author="esv" id="notification-fk-4">
+        <addForeignKeyConstraint baseColumnNames="entity_id" 
+								baseTableName="notification" 
+								constraintName="fk_notification_entity_friendship" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="friendship"/>
+	</changeSet>							
+<!--	<changeSet author="esv" id="notification-fk-5">-->
+<!--        <addForeignKeyConstraint baseColumnNames="entity_id" -->
+<!--								baseTableName="notification" -->
+<!--								constraintName="fk_notification_entity_post_comment" -->
+<!--								onDelete="NO ACTION" -->
+<!--								onUpdate="NO ACTION" -->
+<!--								referencedColumnNames="id" -->
+<!--								referencedTableName="post_comment"/>-->
+<!--	</changeSet>							-->
+<!--	<changeSet author="esv" id="notification-fk-6">-->
+<!--        <addForeignKeyConstraint baseColumnNames="entity_id" -->
+<!--								baseTableName="notification" -->
+<!--								constraintName="fk_notification_entity_message" -->
+<!--								onDelete="NO ACTION" -->
+<!--								onUpdate="NO ACTION" -->
+<!--								referencedColumnNames="id" -->
+<!--								referencedTableName="message"/>								-->
+<!--    </changeSet>-->
+	<changeSet author="esv" id="dialog-createIndexes">
+        <createIndex indexName="fk_dialog_owner_id" tableName="dialog">
+            <column name="owner_id"/>
+        </createIndex>
+		<comment>dialog table</comment>
+    </changeSet>
+	
+	<changeSet author="esv" id="dialog-fk-1">
+        <addForeignKeyConstraint baseColumnNames="owner_id" 
+								baseTableName="dialog" 
+								constraintName="fk_dialog_owner_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="person"/>
+	</changeSet>
+	
+	<changeSet author="esv" id="person2dialog-createIndexes">
+        <createIndex indexName="fk_person2dialog_dialog_id" tableName="person2dialog">
+            <column name="dialog_id"/>
+        </createIndex>
+		<createIndex indexName="fk_person2dialog_person_id" tableName="person2dialog">
+            <column name="person_id"/>
+        </createIndex>
+		<comment>person2dialog table</comment>
+    </changeSet>
+	
+	<changeSet author="esv" id="person2dialog-fk-1">
+        <addForeignKeyConstraint baseColumnNames="dialog_id" 
+								baseTableName="person2dialog" 
+								constraintName="fk_person2dialog_dialog_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="dialog"/>
+	</changeSet>							
+	<changeSet author="esv" id="person2dialog-fk-2">
+        <addForeignKeyConstraint baseColumnNames="person_id" 
+								baseTableName="person2dialog" 
+								constraintName="fk_person2dialog_person_id" 
+								onDelete="NO ACTION" 
+								onUpdate="NO ACTION" 
+								referencedColumnNames="id" 
+								referencedTableName="person"/>								
+    </changeSet>
+</databaseChangeLog>

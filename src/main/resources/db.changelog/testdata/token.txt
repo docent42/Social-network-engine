@@ -1,0 +1,14 @@
+  EMAIL = "tarakan@mail.ru"
+  PASSWORD = qwerty
+
+  - Данная почта присвоена тестовому юзеру под id = 1
+  - Это почта залогиненного юзера
+
+  GOOD_TOKEN = "skillboxeyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXJha2FuQG1haWwucnUiLCJleHAiOjE4OTM0NTYwMDF9.pfKwDjDRMadSuPRPFVaHx35-xersY0GL2UdPmZEjNSpkuX_9EOWGQ5C3e7aP6dBg5bixKCxeLobvX2iXgoCFhg";
+  BAD_TOKEN = "1skillboxeyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXJha2FuQG1haWwucnUiLCJleHAiOjE4OTM0NTYwMDF9.D2b_r7jpqAw7CrQOJDkFneVvLLx9l5WrFk1j9v_OIc0uqUJL_ZkuukcToJ19EznuZIcCmjZpSF4pXin0Co4WtAeyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXJha2FuQG1haWwucnUiLCJleHAiOjE4OTM0NTYwMDF9.D2b_r7jpqAw7CrQOJDkFneVvLLx9l5WrFk1j9v_OIc0uqUJL_ZkuukcToJ19EznuZIcCmjZpSF4pXin0Co4WtA";
+
+  ID6_TOKEN = skillboxeyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJTaGVyaXNlTG9ndWVAZXhhbXBsZS5jb20iLCJleHAiOjE4OTM0NTYwMDF9.y46Xw72l5Efk6clEzHY57owNdTrNLXLaWxx-NYyxHSwN--Q7FTzWOvtR5MNFyUEtl-UoW37ED5nJv8ZSal124w
+
+  В PostMan содержимое хорошего токена вставляется в закладке `Headers` ->
+  Key : Authorization
+  Value: ` сюда вставляем токен `
