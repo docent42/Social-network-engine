@@ -13,6 +13,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -35,10 +36,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private ApplicationContext applicationContext;
 
+    private static final String[] AUTH_WHITELIST = {
+            // -- swagger ui
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**"
+            // other public endpoints of your API may be appended to this array
+    };
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST, SecurityConstants.API_LOGIN_URL, "/account/register").permitAll()
+                .antMatchers(HttpMethod.POST,
+                        SecurityConstants.API_LOGIN_URL,
+                        SecurityConstants.API_REGISTER_URL,
+                        SecurityConstants.API_PASSWORD_RECOVERY_URL)
+                .permitAll()
+                .antMatchers(AUTH_WHITELIST)
+                .permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))
@@ -63,7 +82,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         FilterChainProxy proxy = applicationContext.getBean(FilterChainProxy.class);
         for (Filter f : proxy.getFilters("/")) {
             if (f instanceof FilterSecurityInterceptor) {
-                ((FilterSecurityInterceptor)f).setPublishAuthorizationSuccess(true);
+                ((FilterSecurityInterceptor) f).setPublishAuthorizationSuccess(true);
             }
         }
     }
